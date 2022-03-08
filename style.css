@@ -1,0 +1,142 @@
+body {
+  background-color: #05030f;
+  color: white;
+}
+
+html {
+  scrollbar-color: #d6ff00 #23212f;
+  scroll-behavior: smooth;
+}
+
+.pay {
+  margin: 50px 0px;
+}
+
+input {
+  background-color: #05030f !important;
+  color: rgba(255, 255, 255, 0.733) !important;
+}
+.add {
+  text-align: center;
+  font-size: 18px;
+  margin: 10px;
+  background-color: #23212f2a;
+  padding: 10px;
+  border-radius: 10px;
+  /* box-shadow: 1px 1px 35px #d6ff00; */
+}
+
+button {
+  /* background-color: springgreen; */
+  background-color: #d6ff00;
+  padding: 10px 20px;
+  margin: 20px auto;
+  border-radius: 5px;
+  border: 0px;
+  outline: 0px;
+  font-weight: bolder;
+  /* box-shadow: 1px 1px 5px springgreen; */
+  box-shadow: 1px 1px 5px #d6ff00;
+}
+
+.address {
+  padding: 5px 10px;
+  font-size: 20px;
+  color: white;
+  box-shadow: 1px 1px 15px #05030f;
+  background-color: #05030f;
+  outline: 0px;
+  border: 0px;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  font-size: 14px;
+}
+
+.student {
+  font-size: 10px;
+  text-align: center;
+}
+
+.transactionMessage {
+  text-align: center;
+  color: #d6ff00;
+  font-weight: bolder;
+  font-size: 20px;
+  border: none;
+  outline: 0px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.network h3 {
+  font-size: 20px !important;
+  border: 1px #d6ff00 solid;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  text-transform: capitalize;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  margin: 10px;
+}
+
+form {
+  border-right: 1px solid gray;
+  padding: 10px;
+  border: 1px solid #23212f;
+  border-radius: 10px;
+}
+
+tr {
+  border: 1px solid #23212f;
+}
+
+#students {
+  background-color: #05030f;
+  border-radius: 15px;
+  border: 1px solid #23212f;
+  overflow-y: scroll;
+  height: 300px;
+  padding: 10px;
+  scrollbar-color: #d6ff00 #23212f;
+  scroll-behavior: smooth;
+}
+
+th {
+  padding: 5px;
+}
+
+.accountBalance {
+  color: #d6ff00;
+}
+
+td {
+  padding: 5px;
+  margin: 2px;
+  text-align: justify;
+}
+
+tbody:nth-child(2) {
+  box-shadow: 1px 1px 1px #d6ff00;
+  border-radius: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.stdDetials {
+  border-right: 1px solid gray;
+  padding: 10px;
+  border: 1px solid #23212f;
+  border-radius: 10px;
+}
+
+
+.semesterDetials li{
+  font-size: 20px;
+}

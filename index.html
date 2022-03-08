@@ -1,0 +1,205 @@
+<html>
+  <head>
+    <title>Payment System</title>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8" style="margin: 10px 0px">
+          <h2>Payment System</h2>
+        </div>
+
+        <div class="col-md-4">
+          <div class="network"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p id="userAddress"></p>
+        </div>
+        <div class="col-md-6">
+          <p id="contractAddress"></p>
+        </div>
+      </div>
+
+      <div class="transactionMessage"></div>
+
+      <div class="row pay">
+        <div class="col-md-5">
+          <h2>Student Payment</h2>
+
+          <form action="" name="formSubmitFee" id="formSubmitFee">
+            <div class="form-group">
+              <label for="name">Student Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="form-control"
+                placeholder="Student Name e.g: Saeed Hassan"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="rollNo">Roll No:</label>
+              <input
+                type="text"
+                name="rollNo"
+                id="rollNo"
+                class="form-control"
+                placeholder="Rollno e.g: 18SW33"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="batch">Batch</label>
+              <input
+                type="text"
+                name="batch"
+                id="batch"
+                class="form-control"
+                placeholder="Batch e.g: 18"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="semester">Semester</label>
+              <input
+                type="number"
+                name="semester"
+                id="semester"
+                class="form-control"
+                placeholder="Semester e.g: 6"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="semester">Amount In Ether</label>
+              <input
+                type="text"
+                name="amount"
+                id="amount"
+                class="form-control"
+                placeholder="amount e.g: 0.001"
+              />
+            </div>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <div class="col-md-7">
+          <h3>Total Students: <span id="totalStds"></span></h3>
+          <div id="students">
+            <table id="studentTable">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Address</th>
+                  <th>Date</th>
+                  <th>Roll No</th>
+                  <th>Semester</th>
+                  <th>Batch</th>
+                  <th>Fee</th>
+                </tr>
+              </thead>
+              <tbody id="studentTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Add Semester (only Admin)</h2>
+          <form action="" name="formAddFee" id="formAddFee">
+            <div class="form-group">
+              <label for="batch">Batch</label>
+              <input
+                type="text"
+                name="batch"
+                id="batch"
+                class="form-control"
+                placeholder="Batch e.g: 18"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="semester">Semester</label>
+              <input
+                type="number"
+                name="semester"
+                id="semester"
+                class="form-control"
+                placeholder="Semester e.g: 6"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="semester">Amount In Wei</label>
+              <input
+                type="text"
+                name="amount"
+                id="amount"
+                class="form-control"
+                placeholder="Amount e.g: 10"
+              />
+            </div>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="showSemester">
+        <h2>Semester Detials</h2>
+
+        <div class="stdDetials">
+          <form
+            action=""
+            name="formShowSemesterDetails"
+            id="formShowSemesterDetails"
+          >
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="batchSemester">Batch</label>
+                  <input
+                    type="text"
+                    placeholder="e.g: 18"
+                    class="form-control"
+                    id="batchSemester"
+                    name="batchSemester"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="semesterNo">Semester</label>
+                  <input
+                    type="text"
+                    placeholder="e.g: 6"
+                    id="semesterNo"
+                    class="form-control"
+                    name="semesterNo"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <button type="submit">Enter</button>
+            </div>
+          </form>
+          <div id="semesterDetials"></div>
+        </div>
+      </div>
+    </div>
+    <script src="./bundle.js"></script>
+  </body>
+</html>
