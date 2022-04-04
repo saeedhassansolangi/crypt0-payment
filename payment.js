@@ -209,5 +209,5 @@ const abi = [
 module.exports = {
   abi,
   contractAddress,
-  deployedAddress
+  deployedAddress,
 };

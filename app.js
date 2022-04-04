@@ -1,6 +1,6 @@
-const Web3 = require('web3');
-const moment = require('moment');
-const { abi, contractAddress, deployedAddress } = require('./payment');
+const Web3 = require("web3");
+const moment = require("moment");
+const { abi, contractAddress, deployedAddress } = require("./payment");
 
 // https://rinkeby.etherscan.io/address/0x3ff54678459d70e2e28315d6de837560671305ff#events
 const getWeb3Info = async function () {
@@ -11,46 +11,46 @@ const getWeb3Info = async function () {
   const accounts = await web3.eth.getAccounts();
   const accountbalance = web3.utils.fromWei(
     await web3.eth.getBalance(accounts[0]),
-    'ether'
+    "ether"
   );
 
   const sliceAddress = function (addr) {
     return `${addr.slice(0, 5)}...${addr.slice(-4)}`;
   };
 
-  document.getElementById('userAddress').innerHTML = `<div class='add'>
+  document.getElementById("userAddress").innerHTML = `<div class='add'>
   <p>Connected address : <span class="address">${accounts[0]}</span></p>
   <p class="accountBalance">Account Balance: ${Number(accountbalance).toFixed(
     4
   )} ETH</p>
   </div>`;
 
-  document.querySelector('.network').innerHTML = `<h3>${network}</h3>`;
+  document.querySelector(".network").innerHTML = `<h3>${network}</h3>`;
 
   const payment = new web3.eth.Contract(abi, contractAddress);
 
   const contractbalance = web3.utils.fromWei(
     await web3.eth.getBalance(payment.options.address),
-    'ether'
+    "ether"
   );
 
-  document.getElementById('contractAddress').innerHTML = `<div class='add'>
+  document.getElementById("contractAddress").innerHTML = `<div class='add'>
   <p>Contract address : <span class="address">${contractAddress}</span></p>
   <p class="accountBalance">Contract Balance : ${Number(
     contractbalance
   ).toFixed(4)} ETH</p>
   </div>`;
 
-  const studentTableBody = document.querySelector('#studentTableBody');
+  const studentTableBody = document.querySelector("#studentTableBody");
   const getStudents = async function () {
     const students = await payment.methods.getStudents().call({
       from: accounts[0],
     });
 
-    document.querySelector('#totalStds').innerHTML = students.length;
+    document.querySelector("#totalStds").innerHTML = students.length;
 
     for (let i = students.length - 1; i >= 0; i--) {
-      const amount = web3.utils.fromWei(students[i].amount, 'ether');
+      const amount = web3.utils.fromWei(students[i].amount, "ether");
       studentTableBody.innerHTML += `<tr class="student">
       <td>${students[i].name}</td>
       <td>${sliceAddress(students[i].addr)}</td>
@@ -65,37 +65,37 @@ const getWeb3Info = async function () {
 
   getStudents();
 
-  const form = document.querySelector('#formSubmitFee');
-  form.addEventListener('submit', async function (e) {
+  const form = document.querySelector("#formSubmitFee");
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const name = document.forms['formSubmitFee']['name'].value;
-    const rollNo = document.forms['formSubmitFee']['rollNo'].value;
-    const batch = document.forms['formSubmitFee']['batch'].value;
-    const semester = document.forms['formSubmitFee']['semester'].value;
-    const amount = document.forms['formSubmitFee']['amount'].value;
-    const transactionMessage = document.querySelector('.transactionMessage');
+    const name = document.forms["formSubmitFee"]["name"].value;
+    const rollNo = document.forms["formSubmitFee"]["rollNo"].value;
+    const batch = document.forms["formSubmitFee"]["batch"].value;
+    const semester = document.forms["formSubmitFee"]["semester"].value;
+    const amount = document.forms["formSubmitFee"]["amount"].value;
+    const transactionMessage = document.querySelector(".transactionMessage");
 
     transactionMessage.innerHTML = `Waiting for the Transaction to be approved by the network`;
 
     await payment.methods.pay(name, rollNo, batch, semester).send({
       from: accounts[0],
-      value: web3.utils.toWei(amount, 'ether'),
+      value: web3.utils.toWei(amount, "ether"),
     });
 
-    studentTableBody.innerHTML = '';
+    studentTableBody.innerHTML = "";
     await getStudents();
     transactionMessage.innerHTML = `Transaction is entered into the network`;
   });
 
-  const formAddSemester = document.querySelector('#formAddFee');
+  const formAddSemester = document.querySelector("#formAddFee");
 
-  formAddSemester.addEventListener('submit', async function (e) {
+  formAddSemester.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const batch = document.forms['formAddFee']['batch'].value;
-    const semester = document.forms['formAddFee']['semester'].value;
-    const amount = document.forms['formAddFee']['amount'].value;
+    const batch = document.forms["formAddFee"]["batch"].value;
+    const semester = document.forms["formAddFee"]["semester"].value;
+    const amount = document.forms["formAddFee"]["amount"].value;
     console.log(amount);
 
     if (batch.length < 0 || semester.length < 0 || amount < 0) {
@@ -104,24 +104,22 @@ const getWeb3Info = async function () {
 
     await payment.methods.addSemester(batch, semester).send({
       from: accounts[0],
-      value: web3.utils.toWei(amount, 'ether'),
+      value: web3.utils.toWei(amount, "ether"),
     });
   });
 
   // semesters
 
   const formShowSemesterDetails = document.querySelector(
-    '#formShowSemesterDetails'
+    "#formShowSemesterDetails"
   );
 
-  formShowSemesterDetails.addEventListener('submit', async function (e) {
+  formShowSemesterDetails.addEventListener("submit", async function (e) {
     e.preventDefault();
     const batch =
-      document.forms['formShowSemesterDetails']['batchSemester'].value;
+      document.forms["formShowSemesterDetails"]["batchSemester"].value;
     const semester =
-      document.forms['formShowSemesterDetails']['semesterNo'].value;
-
-  
+      document.forms["formShowSemesterDetails"]["semesterNo"].value;
 
     if (!batch || !semester) {
       return;
@@ -132,7 +130,7 @@ const getWeb3Info = async function () {
       .call({
         from: accounts[0],
       });
-    ('');
+    ("");
 
     const {
       batch: batchSemester,
@@ -141,15 +139,15 @@ const getWeb3Info = async function () {
       start,
     } = semesterDetials;
 
-    if (batchSemester == '' || semesterNo == 0) {
+    if (batchSemester == "" || semesterNo == 0) {
       document.querySelector(
-        '#semesterDetials'
+        "#semesterDetials"
       ).innerHTML = `${batch} doesn't exist with ${semester}`;
       return;
     }
 
-    document.querySelector('#semesterDetials').innerHTML = `<ul>
-    <li>Amount: ${web3.utils.fromWei(amount, 'ether')} ETH</li>
+    document.querySelector("#semesterDetials").innerHTML = `<ul>
+    <li>Amount: ${web3.utils.fromWei(amount, "ether")} ETH</li>
     <li>Batch: ${batchSemester}</li>
     <li>Semester: ${semesterNo}</li>
     <li>Start: ${moment(new Date(start * 1000)).fromNow()}</li>
@@ -157,6 +155,6 @@ const getWeb3Info = async function () {
   });
 };
 
-window.addEventListener('load', function () {
+window.addEventListener("load", function () {
   getWeb3Info();
 });
